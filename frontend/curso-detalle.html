@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Curso - Academia Pesquera</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="bi bi-tsunami" style="color: #6EC1E4;"></i> Academia Pesquera</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="dashboard.html">Eventos</a></li>
+                <li><a href="mi-perfil.html">Mi Perfil</a></li>
+                <li><a href="#" id="auth-link">Iniciar Sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="course-hero">
+        <h1>Detalles del Curso</h1>
+    </div>
+
+    <div class="course-container">
+        <div id="loading" class="loading-container loading-text">
+            Cargando curso...
+        </div>
+
+        <div id="course-content" class="hidden">
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-main-content">
+                        <div>
+                            <span class="badge badge-level" id="course-level"></span>
+                            <span class="badge badge-category" id="course-category"></span>
+                        </div>
+                        <h1 class="course-title" id="course-title"></h1>
+                        <p class="course-description" id="short-description"></p>
+                        
+                        <div class="course-meta">
+                            <div class="meta-item">
+                                <span>👤</span>
+                                <span id="course-instructor"></span>
+                            </div>
+                            <div class="meta-item">
+                                <span>⏱️</span>
+                                <span id="course-duration"></span>
+                            </div>
+                            <div class="meta-item">
+                                <span>👥</span>
+                                <span id="course-students"></span>
+                            </div>
+                            <div class="meta-item">
+                                <span>⭐</span>
+                                <span>4.8 (124 reseñas)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-sidebar">
+                        <img id="course-thumbnail" src="" alt="" class="course-thumbnail">
+                        
+                        <div id="enrolled-section" class="hidden">
+                            <div class="enrolled-badge">
+                                ✓ Ya estás inscrito
+                            </div>
+                            <button class="btn-enroll" onclick="continueCourse()">
+                                Continuar Curso
+                            </button>
+                        </div>
+
+                        <div id="purchase-section">
+                            <div class="price-box">
+                                <div class="price-currency">Precio</div>
+                                <div class="price" id="course-price"></div>
+                            </div>
+                            
+                            <button class="btn-enroll" onclick="enrollCourse()">
+                                Inscribirme Ahora
+                            </button>
+                            <button class="btn-secondary" onclick="addToWishlist()">
+                                Agregar a Favoritos
+                            </button>
+                        </div>
+
+                        <div class="course-includes">
+                            <h4>Este curso incluye:</h4>
+                            <ul class="includes-list">
+                                <li>Acceso de por vida</li>
+                                <li>Material descargable</li>
+                                <li>Certificado de finalización</li>
+                                <li>Acceso móvil y desktop</li>
+                                <li>Soporte del instructor</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-tabs">
+                    <button class="tab-btn active" data-tab="description">Descripción</button>
+                    <button class="tab-btn" data-tab="curriculum">Contenido</button>
+                    <button class="tab-btn" data-tab="instructor">Instructor</button>
+                    <button class="tab-btn" data-tab="reviews">Reseñas</button>
+                </div>
+
+                <div id="description-tab" class="tab-content active">
+                    <h3>Sobre este curso</h3>
+                    <div class="course-description" id="full-description"></div>
+                    
+                    <h3 class="section-title-spacing">¿Qué aprenderás?</h3>
+                    <ul class="includes-list">
+                        <li>Fundamentos teóricos y prácticos del tema</li>
+                        <li>Técnicas avanzadas utilizadas por profesionales</li>
+                        <li>Casos de estudio reales</li>
+                        <li>Herramientas y recursos esenciales</li>
+                    </ul>
+                </div>
+
+                <div id="curriculum-tab" class="tab-content">
+                    <h3>Contenido del Curso</h3>
+                    <div id="curriculum-content">
+                        <div class="curriculum-item">
+                            <h4>Módulo 1: Introducción</h4>
+                            <p>• Bienvenida al curso (10 min)</p>
+                            <p>• Conceptos básicos (25 min)</p>
+                            <p>• Materiales necesarios (15 min)</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>Módulo 2: Fundamentos</h4>
+                            <p>• Teoría fundamental (30 min)</p>
+                            <p>• Ejercicios prácticos (45 min)</p>
+                            <p>• Evaluación del módulo (20 min)</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>Módulo 3: Práctica Avanzada</h4>
+                            <p>• Técnicas avanzadas (40 min)</p>
+                            <p>• Proyecto final (60 min)</p>
+                            <p>• Evaluación final (30 min)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="instructor-tab" class="tab-content">
+                    <h3>Sobre el Instructor</h3>
+                    <div class="instructor-card">
+                        <div class="instructor-avatar" id="instructor-avatar">
+                            I
+                        </div>
+                        <div>
+                            <h3 id="instructor-name"></h3>
+                            <p>Experto en acuicultura y pesca sostenible con más de 15 años de experiencia en el sector.</p>
+                            <p class="text-muted section-title-spacing">
+                                📚 12 cursos • 👥 5,234 estudiantes • ⭐ 4.9 calificación
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reviews-tab" class="tab-content">
+                    <h3>Reseñas de Estudiantes</h3>
+                    <div class="reviews-section">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="reviewer-name">María González</span>
+                                <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p>Excelente curso, muy completo y bien explicado. El instructor demuestra gran conocimiento del tema.</p>
+                            <small class="text-small">Hace 2 semanas</small>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="reviewer-name">Carlos Ramírez</span>
+                                <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p>Muy recomendado. El contenido es práctico y aplicable directamente a proyectos reales.</p>
+                            <small class="text-small">Hace 1 mes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Academia Pesquera. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/curso-detalle.js"></script>
+</body>
+</html>

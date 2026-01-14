@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Curso - Academia Pesquera</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="bi bi-tsunami" style="color: #6EC1E4;"></i> Academia Pesquera</a>
+            <ul class="nav-menu">
+                <li><a href="cursos.html">Mis Cursos</a></li>
+                <li><a href="mi-perfil.html">Mi Perfil</a></li>
+                <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="player-container">
+        <div class="video-section">
+            <div class="video-player" id="video-player">
+                <div class="video-placeholder">
+                    <div class="video-placeholder-content">
+                        <div class="video-placeholder-icon">▶️</div>
+                        <p class="video-placeholder-text">Haz clic en una lección para comenzar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-info">
+                <h2 class="video-title" id="lesson-title">Selecciona una lección</h2>
+                <div class="video-meta">
+                    <span id="lesson-duration">0 min</span>
+                    <span>•</span>
+                    <span id="lesson-module">Módulo</span>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Progreso del curso</span>
+                        <span id="course-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="course-progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="video-actions">
+                    <button class="btn-action btn-secondary" onclick="previousLesson()">
+                        ⬅️ Anterior
+                    </button>
+                    <button class="btn-action btn-primary" onclick="markAsCompleted()">
+                        ✓ Marcar como Completada
+                    </button>
+                    <button class="btn-action btn-primary" onclick="nextLesson()">
+                        Siguiente ➡️
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="curriculum-sidebar">
+            <div class="sidebar-header">
+                <h3 id="course-title">Curso</h3>
+                <p class="sidebar-stats" id="course-stats">0 de 0 lecciones completadas</p>
+            </div>
+
+            <div id="curriculum-content">
+            </div>
+        </div>
+    </div>
+
+    <div class="completion-modal" id="completion-modal">
+        <div class="modal-content">
+            <div class="modal-icon">🎉</div>
+            <h2>¡Felicitaciones!</h2>
+            <p class="modal-text">
+                Has completado el curso exitosamente
+            </p>
+            <button class="btn-action btn-primary modal-btn" onclick="returnToCourses()">
+                Ver Mis Cursos
+            </button>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/curso-player.js"></script>
+</body>
+</html>

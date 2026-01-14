@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos en Vivo - Academia Pesquera</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-tsunami" style="color: #6EC1E4;"></i> Academia Pesquera
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cursos.html">Charlas y Seminarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="evento-vivo.html">Eventos en Vivo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2" href="registro.html">Registrarse Gratis</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Eventos en Vivo</h1>
+            <p class="lead">Participa en charlas en directo con profesionales del sector pesquero</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Próximos Eventos</h2>
+            <div class="row g-4" id="upcomingEvents">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-5">
+                            <h2 class="card-title mb-4 text-center">Pre-registro para Eventos en Vivo</h2>
+                            <p class="text-muted text-center mb-4">Completa el formulario para reservar tu lugar en nuestros próximos eventos</p>
+                            
+                            <form id="eventRegistrationForm">
+                                <div class="mb-3">
+                                    <label for="eventSelect" class="form-label">Selecciona un Evento *</label>
+                                    <select class="form-select" id="eventSelect" required>
+                                        <option value="">Elige un evento...</option>
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">Nombre *</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Apellido *</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo Electrónico *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="company" class="form-label">Empresa/Institución</label>
+                                    <input type="text" class="form-control" id="company">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Rol/Profesión</label>
+                                    <input type="text" class="form-control" id="role">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="motivation" class="form-label">¿Por qué te interesa este evento?</label>
+                                    <textarea class="form-control" id="motivation" rows="3"></textarea>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="newsletter">
+                                    <label class="form-check-label" for="newsletter">
+                                        Quiero recibir información sobre futuros eventos
+                                    </label>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="terms" required>
+                                    <label class="form-check-label" for="terms">
+                                        Acepto los términos y condiciones *
+                                    </label>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-calendar-check"></i> Registrarme al Evento
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div id="registrationSuccess" class="alert alert-success mt-4 d-none" role="alert">
+                                <h5 class="alert-heading"><i class="bi bi-check-circle"></i> ¡Registro Exitoso!</h5>
+                                <p>Te hemos enviado un correo de confirmación con los detalles del evento.</p>
+                            </div>
+
+                            <div id="registrationError" class="alert alert-danger mt-4 d-none" role="alert">
+                                <h5 class="alert-heading"><i class="bi bi-x-circle"></i> Error en el Registro</h5>
+                                <p id="errorMessage"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5><i class="bi bi-tsunami" style="color: #6EC1E4;"></i> Academia Pesquera</h5>
+                    <p class="text-muted">Pescando conocimiento real. Menos teoría, más realidad.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="cursos.html" class="text-muted">Charlas y Seminarios</a></li>
+                        <li><a href="evento-vivo.html" class="text-muted">Eventos en Vivo</a></li>
+                        <li><a href="#" class="text-muted">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contacto</h5>
+                    <p class="text-muted">
+                        <i class="bi bi-envelope"></i> info@academiapesquera.com<br>
+                        <i class="bi bi-telephone"></i> +51 987 654 321
+                    </p>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <p class="text-center text-muted mb-0">&copy; 2026 Academia Pesquera. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/eventos.js"></script>
+</body>
+</html>

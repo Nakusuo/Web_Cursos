@@ -1,0 +1,18 @@
+{
+  "name": "web-cursos-eduplatform",
+  "version": "1.0.0",
+  "description": "Plataforma educativa con cursos y eventos en línea",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm install && node server.js",
+    "dev": "cd backend && npm run dev",
+    "install-backend": "cd backend && npm install"
+  },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=9.x"
+  },
+  "keywords": ["education", "courses", "events"],
+  "author": "",
+  "license": "ISC"
+}
