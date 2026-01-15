@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eduplatfo
 const sampleUsers = [
     {
         email: 'admin@academiapesquera.com',
-        password: 'admin123',
+        password: 'Admin123',
         firstName: 'Admin',
         lastName: 'Principal',
         role: 'admin',
@@ -26,10 +26,10 @@ const sampleUsers = [
     },
     {
         email: 'usuario@test.com',
-        password: 'user123',
+        password: 'Usuario123',
         firstName: 'Juan',
         lastName: 'Pérez',
-        role: 'user',
+        role: 'student',
         isActive: true
     }
 ];
@@ -38,39 +38,42 @@ const sampleCourses = [
     {
         title: 'Fundamentos de Acuicultura Marina',
         description: 'Aprende los conceptos básicos de la acuicultura marina, desde el cultivo de especies hasta la gestión de sistemas acuícolas.',
-        category: 'acuicultura',
+        category: 'data',
         price: 49.99,
-        duration: 120,
-        level: 'beginner',
+        duration: '2h',
+        totalMinutes: 120,
+        level: 'principiante',
         instructor: 'Dr. Carlos Marino',
         thumbnail: 'https://via.placeholder.com/300x180',
         isActive: true,
-        students: 0
-    },
-    {
-        title: 'Técnicas Avanzadas de Pesca Sostenible',
-        description: 'Domina las técnicas modernas de pesca sostenible y aprende sobre la conservación de los recursos marinos.',
-        category: 'pesca',
-        price: 79.99,
-        duration: 180,
-        level: 'intermediate',
-        instructor: 'Ing. María Oceánica',
-        thumbnail: 'https://via.placeholder.com/300x180',
-        isActive: true,
-        students: 0
+        students: { count: 0, active: 0 }
     },
     {
         title: 'Gestión de Recursos Pesqueros',
         description: 'Comprende los principios de gestión sostenible de recursos pesqueros y las políticas internacionales.',
-        category: 'gestion',
+        category: 'negocios',
         price: 59.99,
-        duration: 150,
-        level: 'intermediate',
+        duration: '2h 30min',
+        totalMinutes: 150,
+        level: 'intermedio',
         instructor: 'Dr. Pedro Pescador',
         thumbnail: 'https://via.placeholder.com/300x180',
         isActive: true,
-        students: 0
-    }
+        students: { count: 0, active: 0 }
+    },
+    {
+        title: 'Técnicas Avanzadas de Pesca Sostenible',
+        description: 'Domina las técnicas modernas de pesca sostenible y aprende sobre la conservación de los recursos marinos.',
+        category: 'otro',
+        price: 79.99,
+        duration: '3h',
+        totalMinutes: 180,
+        level: 'avanzado',
+        instructor: 'Ing. María Oceánica',
+        thumbnail: 'https://via.placeholder.com/300x180',
+        isActive: true,
+        students: { count: 0, active: 0 }
+    },
 ];
 
 const sampleEvents = [
@@ -78,43 +81,36 @@ const sampleEvents = [
         title: 'Conferencia: Futuro de la Acuicultura en América Latina',
         description: 'Únete a expertos internacionales en una discusión sobre el futuro de la acuicultura en la región.',
         date: new Date('2026-02-15'),
-        time: '10:00 AM',
-        duration: 180,
-        type: 'conference',
-        category: 'acuicultura',
-        location: 'Online - Zoom',
-        maxAttendees: 200,
-        currentAttendees: 0,
+        speaker: 'Dr. Carlos Marino',
+        category: 'tecnologia',
+        maxCapacity: 200,
+        registrations: 0,
         status: 'upcoming',
         isActive: true,
-        isFree: true
+        isFree: true,
+        price: 0
     },
     {
         title: 'Webinar: Innovaciones en Pesca Sostenible',
         description: 'Descubre las últimas tecnologías y métodos para una pesca más sostenible y eficiente.',
         date: new Date('2026-01-25'),
-        time: '3:00 PM',
-        duration: 90,
-        type: 'webinar',
-        category: 'pesca',
-        location: 'Online - YouTube Live',
-        maxAttendees: 500,
-        currentAttendees: 0,
+        speaker: 'Ing. María Oceánica',
+        category: 'negocios',
+        maxCapacity: 500,
+        registrations: 0,
         status: 'upcoming',
         isActive: true,
-        isFree: true
+        isFree: true,
+        price: 0
     },
     {
         title: 'Taller: Cultivo de Camarones - Nivel Básico',
         description: 'Aprende los fundamentos del cultivo de camarones en este taller práctico.',
         date: new Date('2026-03-10'),
-        time: '9:00 AM',
-        duration: 240,
-        type: 'workshop',
-        category: 'acuicultura',
-        location: 'Centro de Acuicultura - Lima',
-        maxAttendees: 30,
-        currentAttendees: 0,
+        speaker: 'Dr. Pedro Pescador',
+        category: 'otro',
+        maxCapacity: 30,
+        registrations: 0,
         status: 'upcoming',
         isActive: true,
         isFree: false,
@@ -137,11 +133,8 @@ async function seedDatabase() {
         console.log('👥 Creando usuarios...');
         const createdUsers = [];
         for (const userData of sampleUsers) {
-            const hashedPassword = await bcrypt.hash(userData.password, 10);
-            const user = await User.create({
-                ...userData,
-                password: hashedPassword
-            });
+            const user = new User(userData);
+            await user.save();
             createdUsers.push(user);
             console.log(`   ✓ Usuario creado: ${user.email} (${user.role})`);
         }
@@ -222,10 +215,10 @@ async function seedDatabase() {
         console.log('\n🔐 Credenciales de prueba:');
         console.log('   Admin:');
         console.log('   - Email: admin@academiapesquera.com');
-        console.log('   - Password: admin123');
+        console.log('   - Password: Admin123');
         console.log('\n   Usuario:');
         console.log('   - Email: usuario@test.com');
-        console.log('   - Password: user123');
+        console.log('   - Password: Usuario123');
         console.log('═══════════════════════════════════════════\n');
 
         process.exit(0);

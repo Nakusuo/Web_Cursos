@@ -20,7 +20,12 @@ if (loginForm) {
                 body: JSON.stringify({ email, password })
             });
 
-            const data = await response.json();
+            let data;
+            try {
+                data = await response.json();
+            } catch (e) {
+                data = { message: 'Error en la respuesta del servidor' };
+            }
 
             if (response.ok) {
                 localStorage.setItem('authToken', data.token);
@@ -32,11 +37,11 @@ if (loginForm) {
 
                 window.location.href = 'dashboard.html';
             } else {
-                showLoginError(data.message || 'Error al iniciar sesión');
+                showLoginError(data.message || 'Credenciales inválidas. Usa: admin@academiapesquera.com / Admin123');
             }
         } catch (error) {
             console.error('Login error:', error);
-            showLoginError('Error de conexión. Por favor, intenta nuevamente.');
+            showLoginError('Error de conexión. Asegúrate de que el servidor esté corriendo.');
         }
     });
 }
