@@ -88,10 +88,10 @@ if (registerForm) {
             const data = await response.json();
 
             if (response.ok) {
-                showRegisterSuccess('¡Cuenta creada exitosamente! Redirigiendo al login...');
+                showRegisterSuccess('¡Cuenta creada exitosamente! Revisa tu correo electrónico para confirmar. Redirigiendo al login...');
                 setTimeout(() => {
                     window.location.href = 'login.html';
-                }, 2000);
+                }, 3000);
             } else {
                 showRegisterError(data.message || 'Error al crear la cuenta');
             }

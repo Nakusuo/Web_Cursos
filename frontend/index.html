@@ -106,6 +106,57 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <h2 class="text-center mb-4" style="color: #0B2F4A;">¿Necesitas más información?</h2>
+                    <p class="text-center text-muted mb-4">Envíanos un mensaje y te responderemos a la brevedad</p>
+                    
+                    <div id="contact-alert" style="display: none;"></div>
+                    
+                    <form id="contact-form">
+                        <div class="mb-3">
+                            <label for="contact-name" class="form-label">Nombre Completo *</label>
+                            <input type="text" class="form-control" id="contact-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="contact-email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-phone" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="contact-phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-subject" class="form-label">Asunto</label>
+                            <select class="form-control" id="contact-subject">
+                                <option value="">Selecciona un asunto</option>
+                                <option value="Información sobre cursos">Información sobre cursos</option>
+                                <option value="Consulta de precios">Consulta de precios</option>
+                                <option value="Soporte técnico">Soporte técnico</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-message" class="form-label">Mensaje *</label>
+                            <textarea class="form-control" id="contact-message" rows="5" required></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg" id="contact-submit">
+                                <span id="contact-btn-text">Enviar Mensaje</span>
+                                <span id="contact-btn-loading" style="display: none;">
+                                    <span class="spinner-border spinner-border-sm me-2"></span>
+                                    Enviando...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="cta-section py-5">
         <div class="container text-center">
@@ -145,5 +196,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/contact-form.js"></script>
 </body>
 </html>

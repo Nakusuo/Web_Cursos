@@ -31,6 +31,7 @@ app.use('/api/events', require('./routes/event.routes'));
 app.use('/api/event-registrations', require('./routes/eventRegistration.routes'));
 app.use('/api/purchases', require('./routes/purchase.routes'));
 app.use('/api/payments', require('./routes/payment-verification.routes'));
+app.use('/api/contact', require('./routes/contact.routes'));
 
 app.get('/api/health', (req, res) => {
     res.json({ 
