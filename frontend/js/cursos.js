@@ -1,6 +1,9 @@
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000/api'
-    : window.location.origin + '/api';
+const API_URL = window.API_URL || (
+    window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3000/api'
+        : window.location.origin + '/api'
+);
+window.API_URL = API_URL;
 
 let allCourses = [];
 let currentFilters = {
@@ -284,7 +287,6 @@ function showPaymentModal(courseId, price) {
     const modal = new bootstrap.Modal(document.getElementById('paymentModal'));
     modal.show();
     
-    document.querySelectorAll('.payment-method-btn').forEach(btn => {
     document.querySelectorAll('.payment-method-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const method = this.dataset.method;

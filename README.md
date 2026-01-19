@@ -1,33 +1,26 @@
-# Academia Pesquera - Plataforma de Charlas y Seminarios del Sector Pesquero
+# Academia Pesquera
 
 **Pescando conocimiento real - Menos teoría, más realidad**
 
-Plataforma educativa especializada en el sector pesquero peruano donde profesionales comparten experiencias reales a través de charlas, seminarios y eventos en vivo. Los usuarios (estudiantes y trabajadores del sector) pueden acceder a contenido gratuito o pagar por certificados.
+Plataforma de charlas y seminarios del sector pesquero. Los profesionales del rubro comparten su experiencia real con estudiantes y trabajadores.
 
-## 🎯 Identidad de Marca
+## Identidad
 
-- **Nombre**: Academia Pesquera
-- **Eslogan**: Pescando conocimiento real
-- **Mensaje**: Menos teoría, más realidad
-- **Público**: Estudiantes del sector pesquero + trabajadores de la industria
-- **Colores**:
-  - Primario: #0B2F4A (Navy Blue)
-  - Secundario: #1F6FA3 (Ocean Blue)
-  - Acento: #6EC1E4 (Sky Blue)
-  - Blanco: #FFFFFF
-  - Gris Oscuro: #2E2E2E
-- **Icono**: 🌊 Tsunami (Bootstrap Icons: bi-tsunami)
+- Academia Pesquera
+- Pescando conocimiento real. Menos teoría, más realidad.
+- Estudiantes y trabajadores del sector pesquero
+- Colores: #0B2F4A, #1F6FA3, #6EC1E4
+- Icono: 🌊 (bi-tsunami)
 
-## 🚀 Características
+## Qué tiene
 
-- ✅ Sistema de autenticación (registro/login con JWT)
-- 📚 Catálogo de charlas y seminarios con filtros del sector pesquero
-- 🎥 Conferencias y entrevistas con profesionales de la industria
-- 📅 Registro a eventos en vivo
-- 💳 Sistema de pagos con Yape/Plin (métodos peruanos)
-- 👤 Dashboard de usuario con progreso
-- 🛡️ Panel de administración para verificación de pagos
-- 📧 Registro con opción de newsletter
+- Autenticación con JWT
+- Catálogo de charlas y seminarios
+- Eventos en vivo
+- Pagos con Yape y Plin
+- Dashboard de usuario
+- Panel de admin
+- Newsletter
 
 ## 📁 Estructura del Proyecto
 

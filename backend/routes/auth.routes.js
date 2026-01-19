@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { sendWelcomeEmail } = require('../config/email');
+const { authLimiter, createAccountLimiter } = require('../middleware/security.middleware');
+const logger = require('../config/logger');
 
 
 const generateToken = (userId) => {

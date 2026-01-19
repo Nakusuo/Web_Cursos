@@ -10,7 +10,6 @@ router.post('/', [
     body('message').notEmpty().withMessage('El mensaje es requerido')
 ], async (req, res) => {
     try {
-        // Validar datos
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });

@@ -1,6 +1,9 @@
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000/api'
-    : window.location.origin + '/api';
+const API_URL = window.API_URL || (
+    window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3000/api'
+        : window.location.origin + '/api'
+);
+window.API_URL = API_URL;
 
 let currentCourse = null;
 let isEnrolled = false;
@@ -13,7 +16,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializeTabs();
     
     if (!courseId) {
-        showError('ID de curso no especificado');
+        document.getElementById('loading').innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <i class="bi bi-exclamation-circle" style="font-size: 3rem; color: #f0ad4e;"></i>
+                <h3 style="margin-top: 1rem;">Curso no especificado</h3>
+                <p>No se proporcionó un ID de curso válido.</p>
+                <a href="cursos.html" class="btn" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 2rem; background: #6EC1E4; color: white; text-decoration: none; border-radius: 5px;">Ver Todos los Cursos</a>
+            </div>
+        `;
         return;
     }
 
@@ -34,7 +44,30 @@ async function loadCourseDetails() {
         
     } catch (error) {
         console.error('Error:', error);
-        showError('Error al cargar el curso. Por favor, intenta de nuevo.');
+        
+        currentCourse = {
+            _id: courseId,
+            title: 'Técnicas Modernas de Acuicultura',
+            description: 'Aprende las técnicas más avanzadas para el cultivo sostenible de especies acuáticas. Este curso cubre desde fundamentos hasta estrategias avanzadas de producción.',
+            thumbnail: 'https://via.placeholder.com/350x200?text=Curso+de+Acuicultura',
+            category: 'acuicultura',
+            level: 'intermediate',
+            price: 99.99,
+            instructor: 'Dr. Carlos Mendoza',
+            duration: '120',
+            students: 245,
+            rating: { average: 4.8, count: 124 }
+        };
+        
+        renderCourseDetails();
+        
+        const warningDiv = document.createElement('div');
+        warningDiv.style.cssText = 'background: #fff3cd; border: 1px solid #ffc107; padding: 1rem; margin: 1rem 0; border-radius: 5px; text-align: center;';
+        warningDiv.innerHTML = `
+            <i class="bi bi-exclamation-triangle" style="color: #856404;"></i>
+            <strong>Modo de demostración:</strong> No se pudo conectar al servidor. Mostrando datos de ejemplo.
+        `;
+        document.querySelector('.course-container').insertBefore(warningDiv, document.querySelector('.course-container').firstChild.nextSibling);
     }
 }
 
